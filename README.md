@@ -79,6 +79,21 @@
 - 8교시 SQL활용 서술형시험 + 과제물제출
 - C언어 기초: 3장 입출력함수와 연산자 시작예정.
 
+```
+-- 테이블 생성하는 쿼리(제약조건 포함)
+CREATE TABLE TBL_CONSTRAINT (
+RNO NUMBER(11) PRIMARY KEY,
+BNO NUMBER(11),
+REPLYTEXT VARCHAR2(1000),
+REPLYER VARCHAR2(50),
+REG_DATE DATE,
+UPDATE_DATE DATE,
+CONSTRAINT FK_BOARD FOREIGN KEY(BNO)
+REFERENCES TBL_BOARD(BNO)
+);
+-- 제약조건을 확인 하는 명령
+SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME='TBL_CONSTRAINT'
+```
 #### 20210205(금) 작업
 - 오라클 이론 단원10 진도. 
 - [셀프조인]: 대표적으로 사용되는 곳 메뉴 관리
