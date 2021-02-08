@@ -74,8 +74,19 @@
 - IoT(아두이노,노드MCU보드로 실습-C언어책3권) 2주
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
-#### 20210208(월) 작업예정.
+#### 20210208(월) 작업.
 - 오라클 이론 단원13(4DELETE) 작업예정.
+- 제약조건: 프런트엔드단(required), 백엔드단(@NotNull), DB단(NotNull)
+- NotNull, Unique 모두 Primay key로 지정시 자동으로 적용됨.
+- 테이블 3개 이상 조인예(아래)
+
+```
+SELECT TC.BOARD_NAME,TA.BNO,TA.TITLE,TA.REG_DATE,TA.VIEW_COUNT, COUNT(TB.RNO) AS 댓글카운트 
+FROM 
+TBL_BOARD TA INNER JOIN TBL_REPLY TB ON TA.BNO = TB.BNO
+JOIN TBL_BOARD_TYPE TC ON TC.BOARD_TYPE=TA.BOARD_TYPE
+GROUP BY TC.BOARD_NAME,TA.BNO,TA.TITLE,TA.REG_DATE,TA.VIEW_COUNT
+```
 - 8교시 SQL활용 서술형시험 + 과제물제출
 - C언어 기초: 3장 입출력함수와 연산자 시작예정.
 
