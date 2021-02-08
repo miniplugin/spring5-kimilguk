@@ -76,6 +76,11 @@
 
 #### 20210208(월) 작업.
 - 오라클 이론 단원13(4DELETE) 작업예정.
+- 시퀸스(AI역할)-자동번호발생기,동의어(시노님)-테이블호출명이길때,별칭을 만들어서 편리한 호출목적.
+- Grant(권한부여하는명령어)<->Revoke(권한제거명령어), Privileges(권한에관련된명령)
+- GRANT예:  GRANT CREATE TABLE ON EMP TO XE;
+- REVOKE예: REVOKE CREATE TABLE, ON EMP FROM XE;
+- 인덱스: B-TREE알고리즘(자료구조과목): 정렬된 인덱스를 이용한 검색방법.
 - 쿼리에서 TOP 5개 구하기(아래오라클): MS-SQL(TOP 5), Mysql(LIMIT 5), Oracle(ROWNUM)
 
 ```
