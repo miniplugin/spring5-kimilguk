@@ -76,6 +76,21 @@
 
 #### 20210208(월) 작업.
 - 오라클 이론 단원13(4DELETE) 작업예정.
+- 쿼리에서 TOP 5개 구하기(아래오라클): MS-SQL(TOP 5), Mysql(LIMIT 5), Oracle(ROWNUM)
+
+```
+SELECT ROWNUM AS TB_RNUM, TB.* FROM (
+    SELECT ROWNUM AS TA_RNUM, TA.* FROM TBL_MEMBER TA
+    ORDER BY REG_DATE DESC
+) TB
+WHERE ROWNUM <= 5;
+-- TOP5를 구하는 위는 확인용 쿼리 아래는 실제 작업시 사용하는 쿼리
+SELECT * FROM (
+    SELECT * FROM TBL_MEMBER
+    ORDER BY REG_DATE DESC
+) TA
+WHERE ROWNUM <= 5;
+```
 - 제약조건: 프런트엔드단(required), 백엔드단(@NotNull), DB단(NotNull)
 - NotNull, Unique 모두 Primay key로 지정시 자동으로 적용됨.
 - 테이블 3개 이상 조인예(아래)
