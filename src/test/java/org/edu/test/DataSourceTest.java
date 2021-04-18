@@ -1,18 +1,13 @@
 package org.edu.test;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
@@ -23,7 +18,6 @@ import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -45,6 +39,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class DataSourceTest {
 
+	//SqlSessionFactory는 DB 자동연결과 종료 및 세션템플릿(CRUD메서드)를 사용 가능하다.
+	//아래 dataSource는 데이터베이스객체를 pool로 저장해서 사용할때 DataSource객체를 사용한다.
 	@Inject
 	DataSource dataSource;//자바에서처럼 new 오브젝트를 생성하지 않고, 스프링에서는 @Inject로 오브젝트 생성.
 	
@@ -211,7 +207,7 @@ public class DataSourceTest {
 	public void dbConnectionTest() throws Exception {
 		try {//내부에서 {} 에러발생시 실행을 중지하고, catch{}구문이 실행 됩니다. 예외처리라고 합니다.
 			Connection connection = dataSource.getConnection();
-			System.out.println("데이터베이스 접속이 성공하였습니다.");
+			System.out.println("데이터베이스 접속이 성공하였습니다." + connection.getMetaData().getDatabaseProductName());
 		} catch (SQLException e) {
 			System.out.println("데이터베이스 접속에 실패햐였습니다. 왜냐하면 " + e);
 			//e.printStackTrace();
