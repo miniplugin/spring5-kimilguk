@@ -1,6 +1,6 @@
-#### 스프링5 개선
-- 관리자 대시보드 개선예정.(kimilguk.git 참조)
-- 메인페이지 이미지 height 찌그러지는 것 개선예정.(egov-kimilguk.git 참조)
+#### 스프링5.2.5 개선
+- 관리자 대시보드 개선OK.(kimilguk.git 참조)
+- 메인페이지 이미지 height 찌그러지는 것 개선OK.(egov-kimilguk.git 참조)
 
 #### Hsql 데이터베이스 사용 개선
 - jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db 이 내용이 사용된 부분에  ;hsqldb.lock_file=false를 추가하면, 사용시 lock이 걸리지 않고 톰캣과 Junit 동시 사용이 가능합니다.(아래 2가지 수정)
