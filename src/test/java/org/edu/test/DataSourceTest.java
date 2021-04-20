@@ -11,6 +11,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.commons.logging.impl.SimpleLog;
+import org.apache.log4j.Logger;
 import org.edu.dao.IF_BoardDAO;
 import org.edu.dao.IF_MemberDAO;
 import org.edu.vo.BoardVO;
@@ -39,6 +41,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class DataSourceTest {
 
+	private Logger logger = Logger.getLogger(SimpleLog.class);
 	//SqlSessionFactory는 DB 자동연결과 종료 및 세션템플릿(CRUD메서드)를 사용 가능하다.
 	//아래 dataSource는 데이터베이스객체를 pool로 저장해서 사용할때 DataSource객체를 사용한다.
 	@Inject
@@ -207,7 +210,8 @@ public class DataSourceTest {
 	public void dbConnectionTest() throws Exception {
 		try {//내부에서 {} 에러발생시 실행을 중지하고, catch{}구문이 실행 됩니다. 예외처리라고 합니다.
 			Connection connection = dataSource.getConnection();
-			System.out.println("데이터베이스 접속이 성공하였습니다." + connection.getMetaData().getDatabaseProductName());
+			//System.out.println("데이터베이스 접속이 성공하였습니다." + connection.getMetaData().getDatabaseProductName());
+			logger.info("데이터베이스 접속이 성공하였습니다. DB종류는 "+connection.getMetaData().getDatabaseProductName());
 		} catch (SQLException e) {
 			System.out.println("데이터베이스 접속에 실패햐였습니다. 왜냐하면 " + e);
 			//e.printStackTrace();
