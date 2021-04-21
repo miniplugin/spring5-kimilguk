@@ -1020,6 +1020,29 @@ conn.close();
 - SELECT * FROM tbl_board
 - order by bno desc
 - limit [SET으로 받은 계산된 변수값], 10;
+- 오라클에서는 아래와 같습니다.
+
+```
+-- https://maxcomfem.tistory.com/44?category=412540
+-- 오라클에서 페이징 처리 12.4.3 인라인뷰처리 - 우리가 공부한 내용으로는 중첩쿼리 입니다.
+-- 이야기로 풀자면, 
+-- 1회전: 10개 이하를 뽑아놓고, 0보다 큰 개수 구하기
+-- 2회전: 20개 이하를 뽑아놓고, 10보다 큰 개수 구하기
+-- 3회전: 30개 이하를 뽑아놓고, 20보다 큰 개수 구하기
+-- 위 쿼리에서 계산의 핵심은 아래와 같습니다.
+-- (페이지시작번호[증가값]/페이지당보여줄개수[고정값])*페이지당보여줄개수[고정값]
+SELECT TABLE_B.* FROM 
+(
+    SELECT ROWNUM AS RNUM, TABLE_A.* FROM
+    (
+    SELECT * FROM TBL_BOARD 
+    order by reg_date desc
+    ) TABLE_A
+    WHERE ROWNUM <= (0/10+1)*10
+) TABLE_B
+WHERE TABLE_B.RNUM > (0/10) * 10
+-- 참고로, 실제 쿼리가 좀 복잡한 이유는 MySql용과 PageVO를 공통으로 사용하기 위해서 입니다.
+```
 - ---------------------------------
 - 데이터 정렬에 사용되는 기준값 위에서는 bno(게시판번호)
 - Order By 데이터정렬에 상용되는 키워드(예약어)
